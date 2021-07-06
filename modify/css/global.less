@@ -1,0 +1,51 @@
+@import url('@/modify/css/variable.less');
+
+body{
+  .ant-btn {
+    border: 1px solid @primary-color;
+    border-radius: @border-radius-base;
+    font-weight: @primary-font-weight;
+
+    &:hover, &:focus{
+      color: @primary-button-text-color;
+      border: 1px solid @primary-color;
+      background-color: @primary-color;
+    }
+
+    &.ant-btn-primary {
+      background-color: @primary-color;
+    }
+
+    &.ant-btn-primary:hover, &.ant-btn-primary:focus {
+      border: 1px solid @primary-color-light;
+      background-color: @primary-color-light;
+    }
+
+    &.setting-button {
+      border: 1px solid @border-color;
+    }
+  }
+
+  .ant-input {
+    border-radius: @border-radius-base;
+  }
+
+  .ant-menu{
+    font-weight: @primary-font-weight;
+  }
+
+  .ant-menu-horizontal{
+    line-height: 64px;
+    border-bottom: none;
+  }
+
+  .ant-menu-horizontal > .ant-menu-item-selected > a{
+    color: @primary-color-light;
+  }
+
+  .ant-menu-horizontal > .ant-menu-item:hover, .ant-menu-horizontal > .ant-menu-submenu:hover, .ant-menu-horizontal > .ant-menu-item-active, .ant-menu-horizontal > .ant-menu-submenu-active, .ant-menu-horizontal > .ant-menu-item-open, .ant-menu-horizontal > .ant-menu-submenu-open, .ant-menu-horizontal > .ant-menu-item-selected, .ant-menu-horizontal > .ant-menu-submenu-selected {
+    color: @primary-color-light;
+    border-bottom: 2px solid @primary-color-light;
+  }
+}
+

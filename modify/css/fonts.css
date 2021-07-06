@@ -1,0 +1,13 @@
+@font-face{
+  font-family: 'Rubik';
+  src: url('~/assets/fonts/Rubik-VariableFont_wght.ttf')
+}
+
+@font-face{
+  font-family: 'Noto Sans SC';
+  src: url('~/assets/fonts/NotoSansSC-Regular.otf')
+}
+
+body{
+  font-family: 'Rubik','Noto Sans SC', '微软雅黑', sans-serif;
+}
