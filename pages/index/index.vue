@@ -1,10 +1,12 @@
 <template>
-  <div class="body-box">
-    <Nav />
-    <div class="view-body">
-      <nuxt-child keep-alive></nuxt-child>
+  <div class="view-box">
+    <div class="article-box">
+      <a-space direction="vertical" size="large">
+        <Card :title="card.title" :description="card.description" :imgUrl="card.img1" />
+        <Card :title="card.title" :description="card.description" :imgUrl="card.img1" />
+      </a-space>
     </div>
-    <Footer />
+    <Aside />
   </div>
 </template>
 
@@ -53,19 +55,24 @@ export default {
 @import url('@/modify/css/global.less');
 
 body{
-  color: @text-color;
   background-color: @primary-background-color;
 }
 
-.view-body{
+.view-box{
   margin: 0 auto;
-  margin-top: 20px;
   max-width: @view-width;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding: 0 32px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 2fr 1fr;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr;
+  }
+
+  .article-box{
+    max-width: @article-width;
+  }
+
 }
 
 </style>
