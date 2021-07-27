@@ -1,21 +1,28 @@
 <template>
   <div class="view-box">
-    <div class="article-box">
-      <img :src="article.imgUrl" width="100%" />
-      <div class="content-box">
-        <h1>{{article.title}}</h1>
-        <h3>{{article.description}}</h3>
-        <Author />
-        <a-divider />
-        <mavon-editor
-          v-model="handbook"
-          defaultOpen="preview"
-          width="100%"
-          :toolbarsFlag="false"
-          :subfield="false"
-          :boxShadow="false"
-        />
-      </div>
+    <div class="article-body">
+      <a-space direction="vertical">
+        <div class="article-box">
+          <img :src="article.imgUrl" width="100%" />
+          <div class="content-box">
+            <h1>{{article.title}}</h1>
+            <h3>{{article.description}}</h3>
+            <Author />
+            <a-divider />
+            <mavon-editor
+              v-model="handbook"
+              defaultOpen="preview"
+              width="100%"
+              :toolbarsFlag="false"
+              :subfield="false"
+              :boxShadow="false"
+            />
+          </div>
+        </div>
+        <div class="article-comment-box">
+          <ArticleMessage />
+        </div>
+      </a-space>
     </div>
     <Aside />
   </div>
@@ -65,22 +72,27 @@ export default {
     grid-template-columns: 1fr;
   }
 
-  .article-box{
-    display: flex;
-    flex-direction: column;
-    background-color: @nav-background-color;
-    border: 1px solid @border-color;
+  .article-body{
+    .article-box{
+      display: flex;
+      flex-direction: column;
+      background-color: @nav-background-color;
+      border: 1px solid @border-color;
 
-    .content-box{
-      padding: 20px;
+      .content-box{
+        padding: 20px;
 
-      h1{
-        margin-top: 20px;
+        h1{
+          margin-top: 20px;
+        }
+
+        h3{
+          color: @description-text-color;
+        }
       }
+    }
 
-      h3{
-        color: @description-text-color;
-      }
+    .article-comment-box{
     }
   }
 }
