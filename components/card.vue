@@ -23,7 +23,7 @@
               </div>
           </div>
           <div class="info-box">
-            <a-space direction="horizontal">
+            <a-space direction="vertical">
               <p>{{articleDate}}</p>
               <p class="category-text">科技新闻</p>
             </a-space>
