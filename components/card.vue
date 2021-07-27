@@ -23,10 +23,10 @@
               </div>
           </div>
           <div class="info-box">
-            <a-sapce direction="horizontal">
+            <a-space direction="horizontal">
               <p>{{articleDate}}</p>
               <p class="category-text">科技新闻</p>
-            </a-sapce>
+            </a-space>
           </div>
         </div>
       </div>
@@ -78,6 +78,7 @@ export default {
   methods: {
     push () {
       this.$message.info('点击了文章' + this.articleId)
+      this.$router.push('/article')
     }
   }
 }

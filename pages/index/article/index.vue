@@ -61,6 +61,10 @@ export default {
   gap: 20px;
   grid-template-columns: 2fr 1fr;
 
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr;
+  }
+
   .article-box{
     display: flex;
     flex-direction: column;

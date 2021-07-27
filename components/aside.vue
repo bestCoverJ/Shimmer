@@ -24,13 +24,41 @@
           <a-icon type="github" />
         </a-space>
       </div>
+      <div class="recently-article">
+        <h3>最新文章</h3>
+        <a-divider></a-divider>
+        <a-space direction="vertical">
+          <RecentArticle />
+          <RecentArticle />
+          <RecentArticle />
+        </a-space>
+      </div>
+      <div class="recently-message">
+        <h3>最新留言</h3>
+        <a-divider></a-divider>
+        <a-space direction="vertical">
+          <RecentMessage :messageId="messageId.id1" />
+          <RecentMessage :messageId="messageId.id2" />
+          <RecentMessage :messageId="messageId.id3" />
+        </a-space>
+      </div>
     </a-space>
   </div>
 </template>
 
 <script>
 export default {
-
+  name: 'Aside',
+  props: {},
+  data () {
+    return {
+      messageId: {
+        id1: '100001',
+        id2: '100002',
+        id3: '100003'
+      }
+    }
+  }
 }
 </script>
 
@@ -43,7 +71,7 @@ export default {
     align-items: center;
 
     .signup-box{
-      min-width: @aside-width;
+      max-width: @aside-width;
       height: 500px;
       background: url('https://images.unsplash.com/photo-1619359059287-9d024d7081ef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80');
       border: solid 1px #DCDFE6;
@@ -88,6 +116,26 @@ export default {
 
       .ant-space{
         margin: 0 auto;
+      }
+    }
+
+    .recently-article{
+      h3{
+        color: @description-text-color;
+      }
+
+      .ant-divider{
+        margin-top: 5px;
+      }
+    }
+
+    .recently-message{
+      h3{
+        color: @description-text-color;
+      }
+
+      .ant-divider{
+        margin-top: 5px;
       }
     }
   }
