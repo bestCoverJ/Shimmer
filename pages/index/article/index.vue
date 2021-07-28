@@ -7,6 +7,20 @@
           <div class="content-box">
             <h1>{{article.title}}</h1>
             <h3>{{article.description}}</h3>
+            <a-space size="1">
+              <a-tag color="#108ee9">
+                科技新闻
+              </a-tag>
+              <a-tag color="#f50">
+                好物评测
+              </a-tag>
+              <a-tag>
+                无线耳机
+              </a-tag>
+              <a-tag>
+                小米
+              </a-tag>
+            </a-space>
             <Author />
             <a-divider />
             <mavon-editor

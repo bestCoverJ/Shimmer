@@ -2,6 +2,14 @@
   <div class="recent-article-box">
     <div class="recent-article-describe">
       <h3>{{article.title}}</h3>
+      <a-space size="1">
+        <a-tag color="#108ee9">
+          科技新闻
+        </a-tag>
+        <a-tag color="#f50">
+          好物评测
+        </a-tag>
+      </a-space>
       <p>{{article.abstract}}</p>
     </div>
     <div class="recent-article-img">
@@ -40,7 +48,6 @@ export default {
   border: 1px solid @border-color;
   padding: 20px;
   max-width: @aside-width;
-  height: 140px;
   display: grid;
   gap: 10px;
   grid-template-columns: 2fr 1fr;
@@ -49,9 +56,11 @@ export default {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    justify-content: space-between;
 
     p{
       color: @description-text-color;
+      margin: 5px 0 0 0;
     }
   }
 
