@@ -1,5 +1,7 @@
 # shimmer
 
+This is a responsive blog application based on Nuxt.js.
+
 ## Build Setup
 
 ```bash
