@@ -1,6 +1,7 @@
 # shimmer
 
 This is a responsive blog application based on Nuxt.js.
+[demo website](coverj.com)
 
 ## Build Setup
 
