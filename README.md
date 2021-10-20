@@ -1,5 +1,8 @@
 # shimmer
 
+This is a responsive blog application based on Nuxt.js.
+[demo website](https://www.coverj.com)
+
 ## Build Setup
 
 ```bash
