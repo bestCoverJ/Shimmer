@@ -1381,6 +1381,11 @@
     "core-js" "^3.6.5"
     "nanopop" "^2.1.0"
 
+"@types/cookie@^0.3.3":
+  "integrity" "sha1-hbx0ungvt6o6UU0RdngysOO8aAM="
+  "resolved" "https://registry.nlark.com/@types/cookie/download/@types/cookie-0.3.3.tgz?cache=0&sync_timestamp=1629707096500&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fcookie%2Fdownload%2F%40types%2Fcookie-0.3.3.tgz"
+  "version" "0.3.3"
+
 "@types/eslint@^7.2.6":
   "integrity" "sha1-4MpyGbpd7UAgYq1vkm1JHrsp3VM="
   "resolved" "https://registry.nlark.com/@types/eslint/download/@types/eslint-7.2.13.tgz?cache=0&sync_timestamp=1622583754192&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Feslint%2Fdownload%2F%40types%2Feslint-7.2.13.tgz"
@@ -2908,10 +2913,31 @@
   dependencies:
     "safe-buffer" "~5.1.1"
 
+"cookie-universal-nuxt@^2.1.5":
+  "integrity" "sha1-Zp8v+VsbwZYshu3WnJVPYHKeceU="
+  "resolved" "https://registry.nlark.com/cookie-universal-nuxt/download/cookie-universal-nuxt-2.1.5.tgz"
+  "version" "2.1.5"
+  dependencies:
+    "@types/cookie" "^0.3.3"
+    "cookie-universal" "^2.1.5"
+
+"cookie-universal@^2.1.5":
+  "integrity" "sha1-mmzvv7YcdQobjuJhC/cVZr1xlUQ="
+  "resolved" "https://registry.nlark.com/cookie-universal/download/cookie-universal-2.1.5.tgz"
+  "version" "2.1.5"
+  dependencies:
+    "@types/cookie" "^0.3.3"
+    "cookie" "^0.4.0"
+
 "cookie@^0.3.1":
   "integrity" "sha1-5+Ch+e9DtMi6klxcWpboBtFoc7s="
   "resolved" "https://registry.nlark.com/cookie/download/cookie-0.3.1.tgz"
   "version" "0.3.1"
+
+"cookie@^0.4.0":
+  "integrity" "sha1-r9cT/ibr0hupXOth+agRblClN9E="
+  "resolved" "https://registry.nlark.com/cookie/download/cookie-0.4.1.tgz"
+  "version" "0.4.1"
 
 "copy-anything@^2.0.1":
   "integrity" "sha1-hCQHugJGaw34RIGbvjuuu+XUXYc="

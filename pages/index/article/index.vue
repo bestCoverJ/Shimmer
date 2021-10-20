@@ -20,16 +20,20 @@
               <a-tag>
                 小米
               </a-tag>
+              <a-tag>
+                {{login}}
+              </a-tag>
             </a-space>
             <Author />
-            <a-divider />
+            <!-- <a-divider /> -->
             <mavon-editor
               v-model="handbook"
               defaultOpen="preview"
               width="100%"
-              :toolbarsFlag="false"
+              :toolbarsFlag="true"
               :subfield="false"
               :boxShadow="false"
+              :toolbars="editor"
             />
           </div>
         </div>
@@ -43,6 +47,8 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
+
 export default {
   name: 'Article',
   props: {
@@ -51,6 +57,9 @@ export default {
       default: '100001'
     }
   },
+  computed: {
+    ...mapState('system', ['token', 'login'])
+  },
   data () {
     return {
       article: {
@@ -58,10 +67,16 @@ export default {
         description: '近期，小米商城上架了新款无线蓝牙耳机Air2 SE，相较于Air2S，售价由399元降低至169元，同时阉割了无线充电和LHDC音频解码功能。在续航上，由Air 2的总计14小时提升至20小时。外观方面，在更换了耳机盒以外，耳机柄变得略为细长，无线充电触点也做了相应的改变。',
         imgUrl: 'https://images.unsplash.com/photo-1586227740560-8cf2732c1531?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1656&q=80'
       },
-      handbook: ''
+      handbook: '',
+      editor: {
+        navigation: true
+      }
     }
   },
   methods: {
+    ...mapMutations({
+      setToken: 'system/setToken'
+    }),
     getdata () {
       const data = '耳机一直是很多人的强需求，而以目前的形势来看，配备耳机孔的手机将会越来越少。无线蓝牙耳机应运而生，没有线材的缠绕，随拿随听的方便方式，使得大多数人选择了无线蓝牙耳机。抛开配合iPhone极佳的airpods，安卓阵营的无线蓝牙耳机则是层出不穷。入耳式，半入耳式，头戴式等各种样式多种多样，售价也是从百元到千元不等。有人说，选择安卓就是选择了多样性。今天，我们的主角是一款由小米发布的半入耳式无线蓝牙耳机——小米无线蓝牙耳机Air2 SE（下文简称air2SE）。'
       return data.toString()

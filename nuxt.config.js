@@ -26,7 +26,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/antd-ui',
-    { src: '@/plugins/vue-mavon-editor', ssr: false }
+    { src: '@/plugins/vue-mavon-editor', ssr: false },
+    '@/plugins/axios-plugin.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -41,7 +42,8 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'cookie-universal-nuxt'
   ],
 
   styleResources:{
@@ -51,7 +53,21 @@ export default {
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    prefix: '/',
+    proxy: true,
+    credentials: true
+  },
+
+  proxy: {
+    '/api/': {
+      target: 'http://192.168.0.103:8080',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/api/': '/'
+      }
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

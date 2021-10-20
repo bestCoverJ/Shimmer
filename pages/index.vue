@@ -13,12 +13,6 @@ export default {
   name: 'Index',
   data () {
     return {
-      card: {
-        title: '十个提升电脑效率的小技巧',
-        description: '随着 Windows 11 操作系统的发布，大家都将目光放在了这个全新的系统上。但根据官方提供的升级需求来看，仍有一部分电脑暂时还无法满足升级条件。因此，本文推荐了十个提升电脑效率的小技巧，希望可以帮助到您。',
-        img1: 'https://images.unsplash.com/photo-1586227740560-8cf2732c1531?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1656&q=80',
-        img2: 'https://images.unsplash.com/photo-1625219447949-5203cbe4829e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
-      }
     }
   },
   methods: {
@@ -55,6 +49,11 @@ export default {
 body{
   color: @text-color;
   background-color: @primary-background-color;
+
+  .nuxt-progress{
+    background-color: @primary-color-loading;
+    box-shadow: 0 0 0 1px @primary-color-loading-shadow;
+  }
 }
 
 .view-body{

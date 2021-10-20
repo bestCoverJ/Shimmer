@@ -14,7 +14,7 @@
       <div class="nav-item right-bar">
         <a-space :size="spaceSize.signinSize">
           <a-input-search placeholder="搜索内容..." style="width: 200px" @search="onSearch" />
-          <a-button class="login-button btn-border">登录</a-button>
+          <a-button class="login-button btn-border"><nuxt-link to="login">登录</nuxt-link></a-button>
           <a-button type="primary">注册</a-button>
           <a-button class="setting-button" @click="showDrawer"><a-icon type="setting" /></a-button>
         </a-space>

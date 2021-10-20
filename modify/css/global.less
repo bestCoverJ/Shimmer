@@ -1,6 +1,10 @@
 @import url('@/modify/css/variable.less');
 
 body{
+
+  a {
+    color: @primary-color;
+  }
   .ant-btn {
     border-radius: @border-radius-base;
     font-weight: @primary-font-weight;
@@ -21,6 +25,7 @@ body{
 
     &.ant-btn-primary {
       background-color: @primary-color;
+      border-color: @primary-border-color;
     }
 
     &.ant-btn-primary:hover, &.ant-btn-primary:focus {
@@ -30,11 +35,28 @@ body{
   }
 
   .ant-input {
+    border-color: @border-color;
     border-radius: @border-radius-base;
+
+    &.login-input {
+      border: 0;
+      border-bottom: 2px solid @border-color;
+      border-radius: 0;
+
+      &:hover, &:focus {
+        box-shadow: none;
+        border-color: @primary-color;
+      }
+    }
+
+    &:hover, &:focus {
+      border-color: @primary-color;
+      box-shadow: .5 0 0 .5px @primary-color;
+    }
   }
 
   .ant-menu{
-    font-weight: @primary-font-weight;
+    font-weight: 0 0 0 2px @primary-font-weight;
   }
 
   .ant-menu-horizontal{
