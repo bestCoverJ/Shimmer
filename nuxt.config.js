@@ -13,6 +13,9 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      // { src: '/flexible.js', type: 'text/javascript', charset: 'utf-8' }
     ]
   },
 
@@ -71,5 +74,10 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    // postcss: [
+    //   require('postcss-px2rem')({
+    //     remUnit: 50
+    //   })
+    // ]
   }
 }

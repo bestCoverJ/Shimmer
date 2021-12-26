@@ -41,11 +41,11 @@
         <a-form-model-item ref="password" class="text-item" :wrapper-col="{ span: 24, offset: 1 }">
           <nuxt-link to="index">我忘记了我的密码</nuxt-link>
         </a-form-model-item>
-        <a-form-model-item class="btn-item" :wrapper-col="{ span: 14, offset: 6 }">
-          <a-button type="primary" @click="onSubmit">
+        <a-form-model-item class="btn-item" :wrapper-col="{ span: 18, offset: 5 }">
+          <a-button type="primary" @click="onSubmit" :loading="submiteLoading">
             登录
           </a-button>
-          <a-button style="margin-left: 10px;" @click="resetForm">
+          <a-button style="margin-left: 10px;" @click="resetForm" :disable="singupDisabled">
             注册
           </a-button>
         </a-form-model-item>
@@ -56,14 +56,17 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
+  name: 'login',
   computed: {
     ...mapState('system', ['token', 'login'])
   },
   data () {
     return {
+      submiteLoading: false,
+      singupDisabled: false,
       labelCol: { span: 0 },
       wrapperCol: { span: 24 },
       form: {
@@ -81,9 +84,12 @@ export default {
     }
   },
   methods: {
+    ...mapActions('system', ['loginByPwd']),
     onSubmit () {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
+          this.submiteLoading = true
+          this.singupDisabled = true
           this.pageLogin()
         }
       })
@@ -93,16 +99,19 @@ export default {
       this.$axios.get('/api/user/get')
     },
     async pageLogin () {
+      const { account, password } = this.form
+
       const params = {
         // 15392764677
-        account: this.form.account,
-        password: this.form.password
+        account,
+        password
       }
 
-      const res = await this.$axios.post(this.login, {
-        ...params
-      }).catch(() => {})
-      console.log(res)
+      const res = await this.loginByPwd(params)
+
+      this.submiteLoading = false
+      this.singupDisabled = false
+
       if (res && res.code === '200') {
         this.$cookies.set('token', 'Bearer ' + res.data.token)
         this.$message.success(res.msg)

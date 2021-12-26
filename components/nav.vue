@@ -5,10 +5,10 @@
       <div class="nav-item">
         <a-space :size="spaceSize.logoSize">
           <h1>Shimmer</h1>
-          <h3>前端</h3>
+          <!-- <h3>前端</h3>
           <h3>后端</h3>
-          <h3>科技</h3>
-          <h3>随记</h3>
+          <h3>科技</h3>nav-category-box
+          <h3>随记</h3> -->
         </a-space>
       </div>
       <div class="nav-item right-bar">
@@ -129,10 +129,10 @@ export default {
 
   .nav-box{
     padding: 20px 0 5px 0;
-    border-bottom: solid 1px #DCDFE6;
+    // border-bottom: solid 1px #DCDFE6;
 
     .nav-item-box{
-      margin: 10px auto;
+      margin: 0 auto;
       max-width: 1200px;
       display: flex;
       flex-direction: row;
@@ -183,6 +183,7 @@ export default {
   }
 
   .category-box{
+    font-weight: 550;
     box-shadow: 0 10px 12px rgb(0 0 0 / 4%);
 
     .nav-category-box{
@@ -193,7 +194,7 @@ export default {
       justify-content: space-between;
       align-items: center;
       padding: 0 32px;
-      overflow:hidden;
+      overflow: hidden;
     }
   }
 }
