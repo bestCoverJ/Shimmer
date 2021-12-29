@@ -11,12 +11,40 @@
           <h3>随记</h3> -->
         </a-space>
       </div>
+      <div class="nav-item nav-menu">
+        <a-menu v-model="current" mode="horizontal">
+        <a-menu-item key="latest">最新文章</a-menu-item>
+        <a-menu-item key="news">科技新闻</a-menu-item>
+        <a-menu-item key="evaluation">好物评测</a-menu-item>
+        <a-sub-menu>
+          <span slot="title" class="submenu-title-wrapper">
+            网站建设
+          </span>
+          <a-menu-item-group title="网站运营">
+            <a-menu-item key="setting:1">
+              服务器搭建
+            </a-menu-item>
+            <a-menu-item key="setting:2">
+              网站运营规划
+            </a-menu-item>
+          </a-menu-item-group>
+          <a-menu-item-group title="网站开发">
+            <a-menu-item key="setting:3">
+              Vue.js 开发
+            </a-menu-item>
+            <a-menu-item key="setting:4">
+              Shimmer 开发
+            </a-menu-item>
+          </a-menu-item-group>
+        </a-sub-menu>
+      </a-menu>
+      </div>
       <div class="nav-item right-bar">
         <a-space :size="spaceSize.signinSize">
           <a-input-search placeholder="搜索内容..." style="width: 200px" @search="onSearch" />
           <a-button class="login-button btn-border"><nuxt-link to="login">登录</nuxt-link></a-button>
           <a-button type="primary">注册</a-button>
-          <a-button class="setting-button" @click="showDrawer"><a-icon type="setting" /></a-button>
+          <a-button type="button" class="setting-button" @click="showDrawer"><a-icon type="setting" /></a-button>
         </a-space>
       </div>
       <a-icon class="nav-item menu-bar" type="menu" @click="showDrawer" />
@@ -57,38 +85,10 @@
       </a-drawer>
     </div>
   </div>
-  <div class="category-box">
+  <!-- <div class="category-box">
     <div class="nav-category-box">
-      <a-menu v-model="current" mode="horizontal">
-        <a-menu-item key="latest">最新文章</a-menu-item>
-        <a-menu-item key="news">科技新闻</a-menu-item>
-        <a-menu-item key="evaluation">好物评测</a-menu-item>
-        <a-menu-item key="java">Java</a-menu-item>
-        <a-menu-item key="js">JavaScript</a-menu-item>
-        <a-sub-menu>
-          <span slot="title" class="submenu-title-wrapper">
-            网站建设
-          </span>
-          <a-menu-item-group title="网站运营">
-            <a-menu-item key="setting:1">
-              服务器搭建
-            </a-menu-item>
-            <a-menu-item key="setting:2">
-              网站运营规划
-            </a-menu-item>
-          </a-menu-item-group>
-          <a-menu-item-group title="网站开发">
-            <a-menu-item key="setting:3">
-              Vue.js 开发
-            </a-menu-item>
-            <a-menu-item key="setting:4">
-              Shimmer 开发
-            </a-menu-item>
-          </a-menu-item-group>
-        </a-sub-menu>
-      </a-menu>
     </div>
-  </div>
+  </div> -->
 </div>
 </template>
 
@@ -128,8 +128,8 @@ export default {
   background-color: #fff;
 
   .nav-box{
-    padding: 20px 0 5px 0;
-    // border-bottom: solid 1px #DCDFE6;
+    border-bottom: solid 1px #DCDFE6;
+    box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
 
     .nav-item-box{
       margin: 0 auto;
@@ -141,6 +141,7 @@ export default {
       padding: 0 32px;
 
       .nav-item{
+        line-height: 65px;
         .ant-space{
           display: flex;
           flex-direction: row;
@@ -173,30 +174,40 @@ export default {
           }
         }
 
+        &.nav-menu{
+          @media (max-width: 700px) {
+            display: none;
+          }
+        }
+
         &.menu-bar{
           @media (min-width: 700px) {
             display: none;
           }
         }
       }
+
+      .nav-menu {
+        font-weight: 550;
+      }
     }
   }
 
-  .category-box{
-    font-weight: 550;
-    box-shadow: 0 10px 12px rgb(0 0 0 / 4%);
+  // .category-box{
+  //   font-weight: 550;
+  //   box-shadow: 0 10px 12px rgb(0 0 0 / 4%);
 
-    .nav-category-box{
-      margin: 0 auto;
-      max-width: 1200px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 32px;
-      overflow: hidden;
-    }
-  }
+  //   .nav-category-box{
+  //     margin: 0 auto;
+  //     max-width: 1200px;
+  //     display: flex;
+  //     flex-direction: row;
+  //     justify-content: space-between;
+  //     align-items: center;
+  //     padding: 0 32px;
+  //     overflow: hidden;
+  //   }
+  // }
 }
 
 .aside-drawer-box{
