@@ -119,7 +119,7 @@ export default {
   margin-top: 57px;
 
   .singup-box{
-    width: @article-width;
+    width: 100%;
     margin: 0 auto;
 
     .form-box{

@@ -22,7 +22,6 @@ export default {
       type: Object,
       default: () => {
         return {
-          height: '100%',
           width: '100%'
         }
       }
@@ -39,7 +38,7 @@ export default {
   background-color: @nav-background-color;
   .title-bar {
     position: relative;
-    line-height: 48px;
+    line-height: 42px;
     border-bottom: @border-bottom;
 
     h3 {

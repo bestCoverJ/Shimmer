@@ -4,7 +4,7 @@
     <div class="nav-item-box">
       <div class="nav-item">
         <a-space :size="spaceSize.logoSize">
-          <h1>Shimmer</h1>
+          <nuxt-link to="/"><h1>Shimmer</h1></nuxt-link>
           <!-- <h3>前端</h3>
           <h3>后端</h3>
           <h3>科技</h3>nav-category-box
@@ -43,7 +43,7 @@
         <a-space :size="spaceSize.signinSize">
           <a-input-search placeholder="搜索内容..." style="width: 200px" @search="onSearch" />
           <a-button class="login-button btn-border"><nuxt-link to="login">登录</nuxt-link></a-button>
-          <a-button type="primary">注册</a-button>
+          <a-button type="primary"><nuxt-link to="signup">注册</nuxt-link></a-button>
           <a-button type="button" class="setting-button" @click="showDrawer"><a-icon type="setting" /></a-button>
         </a-space>
       </div>
@@ -68,7 +68,7 @@
           <a-divider />
       </a-space>
       <p>个性化设置</p>
-      <a-form v-bind="SettingForm" :form="form" @submit="handleSubmit" layout="inline">
+      <a-form v-bind="SettingForm" :form="form" layout="inline">
         <a-form-item label="启用预设字体">
           <a-switch default-checked v-decorator="['switch', { valuePropName: 'checked' }]" />
         </a-form-item>
@@ -106,6 +106,9 @@ export default {
       SettingForm: {},
       form: {}
     }
+  },
+  beforeCreate () {
+    this.form = this.$form.createForm(this, { name: 'navForm' })
   },
   methods: {
     onSearch () {},

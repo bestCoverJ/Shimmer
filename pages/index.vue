@@ -53,6 +53,7 @@ body{
   .nuxt-progress{
     background-color: @primary-color-loading;
     box-shadow: 0 0 0 1px @primary-color-loading-shadow;
+    height: 1px;
   }
 }
 

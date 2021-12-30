@@ -20,8 +20,9 @@
           探索，发现，学习，成长。专注于前/后端及计算机知识，更有科技相关好文好物推荐。
         </p>
         <p>
-          2021 Shimmer Designed and produced by CoverJ & LHY.
           <a href="http://www.beian.miit.gov.cn/">鄂ICP备 17028953号</a>
+          2021 Shimmer - Designed and produced by CoverJ & LHY.
+          <a href="https://github.com/bestCoverJ/Shimmer"><a-icon type="github" /> Github </a>
         </p>
       </div>
     </div>
