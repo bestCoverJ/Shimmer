@@ -78,7 +78,7 @@ export default {
           { required: true, message: '请输入手机号/电子邮箱' }
         ],
         password: [
-          { required: true, message: '请输入密码' }
+          { required: true, message: '请输入密码呀' }
         ]
       }
     }
