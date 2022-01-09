@@ -1,8 +1,10 @@
 <template>
-  <div class="body-box">
-    <Nav />
-    <div class="view-body">
-      <nuxt-child keep-alive></nuxt-child>
+  <div class="body-page">
+    <div class="body-box">
+      <Nav />
+      <div class="view-body">
+        <nuxt-child keep-alive></nuxt-child>
+      </div>
     </div>
     <Footer />
   </div>
@@ -35,7 +37,7 @@ export default {
     }
   },
   mounted () {
-    this.initDarkMode()
+    // this.initDarkMode()
   }
 }
 </script>
@@ -49,6 +51,7 @@ export default {
 body{
   color: @text-color;
   background-color: @primary-background-color;
+  min-height: 100vh;
 
   .nuxt-progress{
     background-color: @primary-color-loading;
@@ -57,15 +60,23 @@ body{
   }
 }
 
-.view-body{
-  margin: 0 auto;
-  margin-top: 20px;
-  max-width: @view-width;
+.body-page {
   display: flex;
-  flex-direction: row;
+  flex-flow: column;
   justify-content: space-between;
-  flex-wrap: wrap;
-  padding: 0 32px;
-}
+  min-height: 100vh;
 
+  .body-box {
+    .view-body{
+      margin: 0 auto;
+      margin-top: 20px;
+      max-width: @view-width;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 0 32px;
+    }
+  }
+}
 </style>
