@@ -165,26 +165,26 @@ export default {
             margin: 0;
             line-height: 2rem;
 
-            @media (max-width: 1200px) {
+            @media (max-width: @view-width) {
               display: none;
             }
           }
         }
 
         &.right-bar{
-          @media (max-width: 700px) {
+          @media (max-width: @mobile-width) {
             display: none;
           }
         }
 
         &.nav-menu{
-          @media (max-width: 700px) {
+          @media (max-width: @mobile-width) {
             display: none;
           }
         }
 
         &.menu-bar{
-          @media (min-width: 700px) {
+          @media (min-width: @mobile-width) {
             display: none;
           }
         }

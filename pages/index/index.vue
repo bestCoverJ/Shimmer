@@ -65,7 +65,7 @@ body{
   gap: 20px;
   grid-template-columns: 2fr 1fr;
 
-  @media (max-width: 1200px) {
+  @media (max-width: @view-width) {
     grid-template-columns: 1fr;
   }
 

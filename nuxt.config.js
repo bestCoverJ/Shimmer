@@ -64,10 +64,11 @@ export default {
 
   proxy: {
     '/api/': {
-      target: 'http://192.168.0.103:8080',
+      // target: 'http://192.168.0.103:8080',
+      target: 'http://182.92.157.171:8090/',
       changeOrigin: true,
       pathRewrite: {
-        '^/api/': '/'
+        '^/api/': '/api/'
       }
     }
   },

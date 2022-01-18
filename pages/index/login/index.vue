@@ -61,7 +61,7 @@ import { mapState, mapActions } from 'vuex'
 export default {
   name: 'login',
   computed: {
-    ...mapState('system', ['token', 'login'])
+    ...mapState('system', ['token'])
   },
   data () {
     return {
@@ -78,7 +78,7 @@ export default {
           { required: true, message: '请输入手机号/电子邮箱' }
         ],
         password: [
-          { required: true, message: '请输入密码呀' }
+          { required: true, message: '请输入密码' }
         ]
       }
     }
@@ -100,23 +100,18 @@ export default {
     },
     async pageLogin () {
       const { account, password } = this.form
-
       const params = {
-        // 15392764677
         account,
         password
       }
-
       const res = await this.loginByPwd(params)
-
       this.submiteLoading = false
       this.singupDisabled = false
-
-      if (res && res.code === '200') {
+      if (res?.data?.code === 200) {
         this.$cookies.set('token', 'Bearer ' + res.data.token)
-        this.$message.success(res.msg)
+        this.$message.success(res.data.message)
       } else {
-        this.$message.error(res.msg)
+        this.$message.error(res.data.message)
       }
     }
   },
