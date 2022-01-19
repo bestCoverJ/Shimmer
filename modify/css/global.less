@@ -43,16 +43,23 @@ body{
       border: 1px solid @primary-color-light;
       background-color: @primary-color-light;
     }
+
+    &.ant-btn-link {
+      &:hover, &:focus {
+        background-color: @text-button-bg-color;
+        border: 1px solid @text-button-bg-color;
+      }
+    }
   }
 
   .ant-input {
+    border-radius: 4px !important;
     border-color: @border-color;
     border-radius: @border-radius-base;
 
     &.login-input {
-      border: 0;
-      border-bottom: 2px solid @border-color;
-      border-radius: 0;
+      border: 1px solid @border-color;
+      border-radius: 4px;
 
       &:hover, &:focus {
         box-shadow: none;
@@ -63,6 +70,34 @@ body{
     &:hover, &:focus {
       border-color: @primary-color;
       box-shadow: .5 0 0 .5px @primary-color;
+    }
+
+    // &.has-error {
+    //   &:hover, &:focus， &:active{
+    //     border-color: @error-inpit-color !important;
+    //   }
+    // }
+  }
+
+  .ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
+    border-color: @primary-color;
+    box-shadow: .5 0 0 .5px @primary-color;
+  }
+
+  .ant-checkbox {
+    .ant-checkbox-input:hover {
+      border-color: @primary-color;
+    }
+
+    &.ant-checkbox-checked {
+      .ant-checkbox-inner {
+        background-color: @primary-color;
+        border-color: @primary-color;
+
+        &:hover {
+          border-color: @primary-color;
+        }
+      }
     }
   }
 

@@ -6,7 +6,7 @@ const user = header + '/user'
 export const state = () => ({
   token: '',
   login: user + '/login',
-  signup: user + '/signup',
+  signup: user + '/register',
   searchPwd: user + '/searchPwd',
   sendEmail: user + '/sendEmail'
 })
@@ -33,6 +33,7 @@ export const actions = {
     //   "password": "string",
     //   "username": "string"
     // }
+    console.log(params)
     return await axios.post(context.state.signup, {
       ...params
     }).catch(() => {})
