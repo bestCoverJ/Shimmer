@@ -81,8 +81,8 @@
           </a-form-model-item>
         </a-form-model>
       </div>
-      <p class="copyright-box">Copyright @ 2021-2022 Shimmer. All Rights Reserved</p>
     </div>
+    <div class="copyright-box">Copyright @ 2021-2022 Shimmer. All Rights Reserved</div>
   </div>
 </template>
 
@@ -216,6 +216,9 @@ export default {
     background-size: cover;
     background-position: 100%;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     .signup-box {
       box-sizing: border-box;
@@ -251,10 +254,10 @@ export default {
         align-items: center;
         margin-bottom: 48px;
       }
+    }
 
-      .copyright-box {
-        margin-top: 32px;
-      }
+    .copyright-box {
+      padding: 20px 30px;
     }
   }
 </style>
