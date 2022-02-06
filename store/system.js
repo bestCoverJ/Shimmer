@@ -5,6 +5,7 @@ const user = header + '/user'
 
 export const state = () => ({
   token: '',
+  logged: false,
   login: user + '/login',
   signup: user + '/register',
   searchPwd: user + '/searchPwd',
@@ -12,6 +13,22 @@ export const state = () => ({
 })
 
 export const mutations = ({
+  // 检查用户登录状态
+  checkLoginState (state, payload) {
+    if (this.$cookies.get('token')) {
+      state.logged = true
+    }
+  },
+  userLogin (state, payload) {
+    state.token = payload.token
+    this.$cookies.set('token', 'Bearer ' + state.token)
+    state.logged = true
+  },
+  userLogout (state, payload) {
+    state.token = ''
+    this.$cookies.remove('token')
+    state.logged = false
+  }
 })
 
 export const actions = {

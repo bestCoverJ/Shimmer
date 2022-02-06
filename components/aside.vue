@@ -68,7 +68,11 @@ export default {
     min-width: @aside-width;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
+
+    @media (max-width: @view-width) {
+      align-items: center;
+    }
 
     .signup-box{
       max-width: @aside-width;

@@ -4,7 +4,7 @@
     <div class="login-box">
       <div class="title-box">
         <h2>一点微光 伴我成长</h2>
-        <p>还未注册账号？<nuxt-link to="signup">注册新账号</nuxt-link></p>
+        <p>还未注册账号?<nuxt-link to="signup">注册新账号</nuxt-link></p>
       </div>
       <a-form-model
         ref="ruleForm"
@@ -64,9 +64,12 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 export default {
   name: 'Login',
+  computed: {
+    ...mapState('system', ['logged'])
+  },
   data () {
     return {
       submiteLoading: false,
@@ -83,8 +86,14 @@ export default {
       }
     }
   },
+  created () {
+    if (this.logged) {
+      this.$router.push('/')
+    }
+  },
   methods: {
     ...mapActions('system', ['loginByPwd']),
+    ...mapMutations('system', ['userLogin']),
     onChange () {},
     onSubmit () {
       this.$refs.ruleForm.validate((valid) => {
@@ -109,8 +118,12 @@ export default {
       this.submiteLoading = false
       this.singupDisabled = false
       if (res?.data?.code === 200) {
-        this.$cookies.set('token', 'Bearer ' + res.data.token)
+        const token = {
+          token: res.data.data.token
+        }
+        this.userLogin(token)
         this.$message.success(res.data.message)
+        this.$router.push('/')
       } else {
         this.$message.error(res.data.message)
       }

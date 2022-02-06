@@ -85,38 +85,46 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.bottom-box{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+@import url('@/modify/css/global.less');
+.card-box {
+  width: @article-width;
 
-  p{
-    font-weight: 500;
-    margin: 0;
-
-    &.category-text{
-      color: #5869DA;
-    }
+  @media (max-width: @mini-width) {
+    width: 100%;
   }
-
-  .avatar-box{
+  .bottom-box{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
 
-    .authors-box{
-      #signature{
-        font-weight: 400;
+    p{
+      font-weight: 500;
+      margin: 0;
+
+      &.category-text{
+        color: #5869DA;
       }
     }
-  }
 
-  .info-box{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-align: right;
+    .avatar-box{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .authors-box{
+        #signature{
+          font-weight: 400;
+        }
+      }
+    }
+
+    .info-box{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-align: right;
+    }
   }
 }
 

@@ -40,15 +40,29 @@
       </a-menu>
       </div>
       <div class="nav-item right-bar">
-        <a-space :size="spaceSize.signinSize">
-          <a-input-search placeholder="搜索内容..." style="width: 200px" @search="onSearch" />
-          <a-button class="login-button btn-border"><nuxt-link to="login">登录</nuxt-link></a-button>
-          <a-button type="primary"><nuxt-link to="signup">注册</nuxt-link></a-button>
-          <a-button type="button" class="setting-button" @click="showDrawer"><a-icon type="setting" /></a-button>
-        </a-space>
+        <a-input-search class="search-input" placeholder="搜索内容..." style="width: 200px" @search="onSearch" />
+        <a-button v-if="!logged" class="login-button btn-border"><nuxt-link to="login">登录</nuxt-link></a-button>
+        <a-button v-if="!logged" type="primary"><nuxt-link to="signup">注册</nuxt-link></a-button>
+        <a-dropdown v-else>
+          <div class="ant-dropdown-link" @click="e => e.preventDefault()">
+            <span class="user-menu"></span> <a-icon type="down" />
+          </div>
+          <a-menu slot="overlay">
+            <a-menu-item>
+              <a href="javascript:;">1st menu item</a>
+            </a-menu-item>
+            <a-menu-item>
+              <a href="javascript:;">2nd menu item</a>
+            </a-menu-item>
+            <a-menu-item>
+              <a href="javascript:;">3rd menu item</a>
+            </a-menu-item>
+          </a-menu>
+        </a-dropdown>
+        <!-- <a-button type="button" class="setting-button" @click="showDrawer"><a-icon type="setting" /></a-button> -->
       </div>
       <a-icon class="nav-item menu-bar" type="menu" @click="showDrawer" />
-      <a-drawer
+      <!-- <a-drawer
         class="aside-drawer-box"
         width="300"
         placement="right"
@@ -72,17 +86,17 @@
         <a-form-item label="启用预设字体">
           <a-switch default-checked v-decorator="['switch', { valuePropName: 'checked' }]" />
         </a-form-item>
-        <p>开启后，网站会尝试从网络中加载预设字体，用于提升用户体验。如果您的网络不佳，或者字体显示异常，可以关闭此功能。</p>
+        <p>开启后,网站会尝试从网络中加载预设字体,用于提升用户体验。如果您的网络不佳,或者字体显示异常,可以关闭此功能。</p>
         <a-form-item label="启用深色模式">
           <a-switch default-checked v-decorator="['switch', { valuePropName: 'checked' }]" />
         </a-form-item>
-        <p>开启后，网站会强制切换到深色模式，关闭此功能则自动跟随浏览器的色彩模式。</p>
+        <p>开启后,网站会强制切换到深色模式,关闭此功能则自动跟随浏览器的色彩模式。</p>
         <a-form-item label="记住登录状态">
           <a-switch default-checked v-decorator="['switch', { valuePropName: 'checked' }]" />
         </a-form-item>
-        <p>开启后，浏览器登录网站后将记住用户的状态信息，免去下次手动登录。该功能仅对同一浏览器生效。</p>
+        <p>开启后,浏览器登录网站后将记住用户的状态信息,免去下次手动登录。该功能仅对同一浏览器生效。</p>
       </a-form>
-      </a-drawer>
+      </a-drawer> -->
     </div>
   </div>
   <!-- <div class="category-box">
@@ -93,8 +107,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'Nav',
+  computed: {
+    ...mapState('system', ['logged'])
+  },
   data () {
     return {
       spaceSize: {
@@ -135,6 +154,7 @@ export default {
     box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
 
     .nav-item-box{
+      box-sizing: content-box;
       margin: 0 auto;
       max-width: 1200px;
       display: flex;
@@ -172,8 +192,32 @@ export default {
         }
 
         &.right-bar{
-          @media (max-width: @mobile-width) {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          @media (max-width: @mini-width) {
             display: none;
+          }
+
+          .search-input {
+            margin-right: 16px;
+          }
+          .ant-dropdown-link {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .user-menu {
+              display: inline-block;
+              background-image: url('https://file.coverj.com/img/avatar.jpg');
+              background-size: 100%;
+              width: 32px;
+              height: 32px;
+              border-radius: 4px;
+              border: 1px solid @border-color;
+              margin-right: 8px;
+            }
           }
         }
 
@@ -184,7 +228,7 @@ export default {
         }
 
         &.menu-bar{
-          @media (min-width: @mobile-width) {
+          @media (min-width: @mini-width) {
             display: none;
           }
         }

@@ -11,13 +11,19 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'Index',
   data () {
     return {
     }
   },
+  created () {
+    this.checkLoginState()
+  },
   methods: {
+    ...mapMutations('system', ['checkLoginState']),
     initDarkMode () {
       const darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
       console.log(1)
@@ -71,11 +77,11 @@ body{
       margin: 0 auto;
       margin-top: 20px;
       max-width: @view-width;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      padding: 0 32px;
+      // display: flex;
+      // flex-direction: row;
+      // justify-content: space-between;
+      // flex-wrap: wrap;
+      // padding: 0 32px;
     }
   }
 }
