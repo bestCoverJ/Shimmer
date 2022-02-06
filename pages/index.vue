@@ -11,10 +11,13 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'Index',
+  computed: {
+    ...mapState('system', ['keepState'])
+  },
   data () {
     return {
     }
@@ -23,7 +26,7 @@ export default {
     this.checkLoginState()
   },
   methods: {
-    ...mapMutations('system', ['checkLoginState']),
+    ...mapMutations('system', ['checkLoginState', 'userLogout']),
     initDarkMode () {
       const darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
       console.log(1)
@@ -44,6 +47,12 @@ export default {
   },
   mounted () {
     // this.initDarkMode()
+  },
+  beforeRouteLeave (to, from, next) {
+    if (!this.keepState) {
+      this.userLogout()
+    }
+    next()
   }
 }
 </script>

@@ -4,7 +4,7 @@
     <div class="signup-box">
       <div class="title-box">
         <h2>一点微光 伴我成长</h2>
-        <p>已有账号？<nuxt-link to="login">登录</nuxt-link></p>
+        <p>已有账号?<nuxt-link to="login">登录</nuxt-link></p>
       </div>
       <div class="form-box">
         <a-form-model
@@ -13,6 +13,7 @@
           :rules="rules"
           :label-col="labelCol"
           :wrapper-col="wrapperCol"
+          @keyup.enter.native="onSubmit"
         >
           <a-form-model-item ref="email" prop="email">
               <a-input
@@ -76,7 +77,7 @@
           </a-form-model-item>
           <a-form-model-item class="btn-item">
             <a-button type="primary" @click="onSubmit" :loading="submiteLoading" block>
-              登录
+              注册
             </a-button>
           </a-form-model-item>
         </a-form-model>
@@ -224,7 +225,7 @@ export default {
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
-      margin: 5% 5% 0 5%;
+      margin: 0 0 0 5%;
       max-width: 400px;
       line-height: 22px;
 

@@ -41,21 +41,22 @@
       </div>
       <div class="nav-item right-bar">
         <a-input-search class="search-input" placeholder="搜索内容..." style="width: 200px" @search="onSearch" />
-        <a-button v-if="!logged" class="login-button btn-border"><nuxt-link to="login">登录</nuxt-link></a-button>
+        <a-button v-if="!logged" class="login-button btn-border" style="margin-right: 12px;"><nuxt-link to="login">登录</nuxt-link></a-button>
         <a-button v-if="!logged" type="primary"><nuxt-link to="signup">注册</nuxt-link></a-button>
         <a-dropdown v-else>
           <div class="ant-dropdown-link" @click="e => e.preventDefault()">
             <span class="user-menu"></span> <a-icon type="down" />
           </div>
-          <a-menu slot="overlay">
+          <a-menu class="menu-item" slot="overlay">
             <a-menu-item>
-              <a href="javascript:;">1st menu item</a>
+              <a href="javascript:;"><a-icon type="user" /> 我的主页</a>
             </a-menu-item>
             <a-menu-item>
-              <a href="javascript:;">2nd menu item</a>
+              <a href="javascript:;"><a-icon type="edit" /> 创作中心</a>
             </a-menu-item>
+            <a-menu-divider />
             <a-menu-item>
-              <a href="javascript:;">3rd menu item</a>
+              <a href="javascript:;" @click="logout"><a-icon type="logout" /> 退出</a>
             </a-menu-item>
           </a-menu>
         </a-dropdown>
@@ -107,7 +108,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'Nav',
@@ -130,6 +131,7 @@ export default {
     this.form = this.$form.createForm(this, { name: 'navForm' })
   },
   methods: {
+    ...mapMutations('system', ['userLogout']),
     onSearch () {},
     showDrawer () {
       this.isShowDrawer = true
@@ -138,7 +140,11 @@ export default {
       this.isShowDrawer = false
     },
     handleSubmit () {},
-    afterVisibleChange () {}
+    afterVisibleChange () {},
+    logout () {
+      this.userLogout()
+      this.$router.push('/')
+    }
   }
 }
 </script>

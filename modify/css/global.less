@@ -1,10 +1,10 @@
 @import url('@/modify/css/variable.less');
 
 body{
-
   a {
     color: @primary-color;
   }
+
   .ant-btn {
     border-radius: @border-radius-base;
     font-weight: @primary-font-weight;
@@ -125,6 +125,18 @@ body{
 
   .ant-tabs-ink-bar {
     background-color: @primary-color;
+  }
+
+  .ant-dropdown-menu-item {
+    padding: 5px 18px;
+
+    a {
+      color: @primary-text-color;  
+    }
+
+    &:hover {
+      background-color: @border-light-color;
+    }
   }
 }
 

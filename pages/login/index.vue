@@ -12,6 +12,7 @@
         :rules="rules"
         :label-col="labelCol"
         :wrapper-col="wrapperCol"
+        @keyup.enter.native="onSubmit"
       >
         <a-form-model-item ref="account" prop="account">
           <a-input
@@ -20,7 +21,7 @@
             placeholder="请输入电子邮箱/手机号"
             @blur="
               () => {
-                $refs.account.onFieldBlur();
+               // $refs.account.onFieldBlur();
               }
             "
           >
@@ -34,7 +35,7 @@
             placeholder="请输入密码"
             @blur="
               () => {
-                $refs.password.onFieldBlur();
+               // $refs.password.onFieldBlur();
               }
             "
           >
@@ -42,7 +43,12 @@
           </a-input>
         </a-form-model-item>
         <div class="text-item">
-          <a-checkbox @change="onChange"> 保持登录状态 </a-checkbox>
+          <a-tooltip placement="bottom">
+          <template slot="title">
+            勾选此选项,可为你保持登录状态,以免重复输入账号密码。请勿在公共电脑上勾选此选项哦
+          </template>
+          <a-checkbox v-model="form.keepState"> 保持登录状态 </a-checkbox>
+        </a-tooltip>
           <nuxt-link to="index">我忘记了我的密码</nuxt-link>
         </div>
         <a-form-model-item class="btn-item">
@@ -78,7 +84,8 @@ export default {
       wrapperCol: { span: 24 },
       form: {
         account: '',
-        password: ''
+        password: '',
+        keepState: true
       },
       rules: {
         account: [{ required: true, message: '请输入手机号/电子邮箱' }],
@@ -109,7 +116,7 @@ export default {
       this.$axios.get('/api/user/get')
     },
     async pageLogin () {
-      const { account, password } = this.form
+      const { account, password, keepState } = this.form
       const params = {
         account,
         password
@@ -119,7 +126,8 @@ export default {
       this.singupDisabled = false
       if (res?.data?.code === 200) {
         const token = {
-          token: res.data.data.token
+          token: res.data.data.token,
+          keepState
         }
         this.userLogin(token)
         this.$message.success(res.data.message)
@@ -148,7 +156,7 @@ export default {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    margin: 0 5%;
+    margin: 0 0 0 5%;
     max-width: 400px;
     line-height: 22px;
 
