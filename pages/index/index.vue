@@ -28,15 +28,15 @@ export default {
       const darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
       console.log(1)
       if (darkMode && darkMode.matches) {
-        alert('dark!')
+        // alert('dark!')
         console.log('dark')
       }
       darkMode && darkMode.addEventListener('change', (e) => {
         if (e.matches) {
-          alert('dark!')
+          // alert('dark!')
           console.log('dark')
         } else {
-          alert('light!')
+          // alert('light!')
           console.log('light')
         }
       })

@@ -3,7 +3,7 @@ export default {
   head: {
     title: 'shimmer',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'cn'
     },
     meta: [
       { charset: 'utf-8' },
@@ -18,50 +18,42 @@ export default {
       // { src: '/flexible.js', type: 'text/javascript', charset: 'utf-8' }
     ]
   },
-
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     'ant-design-vue/dist/antd.css',
     '@/modify/css/global.less',
     '@/modify/css/fonts.css'
   ],
-
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/antd-ui',
     { src: '@/plugins/vue-mavon-editor', ssr: false },
     '@/plugins/axios-plugin.js'
   ],
-
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
-
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module'
   ],
-
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     'cookie-universal-nuxt'
   ],
-
   styleResources:{
     less:[
       './modify/css/global.less'
     ]
   },
-
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     prefix: '/',
     proxy: true,
     credentials: true
   },
-
   proxy: {
     '/api/': {
       // target: 'http://192.168.0.103:8080',
@@ -72,7 +64,6 @@ export default {
       }
     }
   },
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     // postcss: [

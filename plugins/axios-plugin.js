@@ -41,7 +41,7 @@ export default function ({ $axios, app, redirect }) {
         message.error('服务响应异常')
         break
       case 503:
-        message.error('服务器正忙，请稍后')
+        message.error('服务器正忙,请稍后')
         break
       case 504:
         message.error('服务访问超时')
