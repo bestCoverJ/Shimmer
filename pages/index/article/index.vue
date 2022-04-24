@@ -1,33 +1,31 @@
 <template>
   <div class="view-box">
     <div class="article-body">
-      <a-space direction="vertical">
+      <a-spin :spinning="loading">
+        <a-icon slot="indicator" type="loading" style="font-size: 24px" spin />
+        <a-skeleton v-if="!hasData" active />
+      </a-spin>
+      <a-space v-if="hasData" direction="vertical">
         <div class="article-box">
           <img :src="article.imgUrl" width="100%" />
           <div class="content-box">
-            <h1>{{article.title}}</h1>
-            <h3>{{article.description}}</h3>
+            <h1>{{ article.title }}</h1>
+            <h3>{{ article.brief }}</h3>
             <a-space size="1">
               <a-tag color="#108ee9">
-                科技新闻
+                {{ article.tag1 }}
               </a-tag>
               <a-tag color="#f50">
-                好物评测
+                {{ article.tag2 }}
               </a-tag>
               <a-tag>
-                无线耳机
-              </a-tag>
-              <a-tag>
-                小米
-              </a-tag>
-              <a-tag>
-                {{login}}
+                {{ article.tag3 }}
               </a-tag>
             </a-space>
             <Author />
             <!-- <a-divider /> -->
             <mavon-editor
-              v-model="handbook"
+              v-model="article.content"
               defaultOpen="preview"
               width="100%"
               :toolbarsFlag="true"
@@ -47,43 +45,69 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'Article',
-  props: {
-    articleId: {
-      type: String,
-      default: '100001'
-    }
-  },
-  computed: {
-    ...mapState('system', ['token', 'login'])
-  },
   data () {
     return {
+      hasData: false,
+      loading: true,
       article: {
-        title: '小米无线蓝牙耳机Air2 SE——性价比背后的妥协之作',
-        description: '近期，小米商城上架了新款无线蓝牙耳机Air2 SE，相较于Air2S，售价由399元降低至169元，同时阉割了无线充电和LHDC音频解码功能。在续航上，由Air 2的总计14小时提升至20小时。外观方面，在更换了耳机盒以外，耳机柄变得略为细长，无线充电触点也做了相应的改变。',
-        imgUrl: 'https://images.unsplash.com/photo-1586227740560-8cf2732c1531?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1656&q=80'
+        title: '',
+        brief: '',
+        imgUrl: 'https://images.unsplash.com/photo-1586227740560-8cf2732c1531?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1656&q=80',
+        tag1: '',
+        tag2: '',
+        tag3: '',
+        content: '1'
       },
-      handbook: '',
       editor: {
         navigation: true
       }
     }
   },
+  computed: {
+    ...mapState('system', ['token', 'login'])
+  },
+  watch: {
+    '$route.query.id': {
+      immediate: true, // 一开始的数据也要当做一种变化
+      handler (val, old) {
+        console.log(val, old)
+        this.getdata()
+      }
+    }
+  },
+  mounted () {
+    this.getdata()
+  },
   methods: {
     ...mapMutations({
       setToken: 'system/setToken'
     }),
-    getdata () {
-      const data = '耳机一直是很多人的强需求，而以目前的形势来看，配备耳机孔的手机将会越来越少。无线蓝牙耳机应运而生，没有线材的缠绕，随拿随听的方便方式，使得大多数人选择了无线蓝牙耳机。抛开配合iPhone极佳的airpods，安卓阵营的无线蓝牙耳机则是层出不穷。入耳式，半入耳式，头戴式等各种样式多种多样，售价也是从百元到千元不等。有人说，选择安卓就是选择了多样性。今天，我们的主角是一款由小米发布的半入耳式无线蓝牙耳机——小米无线蓝牙耳机Air2 SE（下文简称air2SE）。'
-      return data.toString()
+    ...mapActions('article', ['getById']),
+    async getdata () {
+      scrollTo(0, 0)
+      this.hasData = false
+      this.loading = true
+      const params = {
+        id: this.$route.query.id
+      }
+      const res = await this.getById(params)
+      if (res?.data?.code === 200) {
+        this.article.title = res.data.data.title
+        this.article.brief = res.data.data.brief
+        this.article.tag1 = res.data.data.tag1
+        this.article.tag2 = res.data.data.tag2
+        this.article.tag3 = res.data.data.tag3
+        this.article.content = res.data.data.content
+        this.hasData = true
+      } else {
+        this.hasData = false
+      }
+      this.loading = false
     }
-  },
-  mounted () {
-    this.handbook = this.getdata()
   }
 }
 </script>
@@ -110,6 +134,7 @@ export default {
 
       .content-box{
         padding: 20px;
+        width: 100%;
 
         h1{
           margin-top: 20px;

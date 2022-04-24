@@ -1,29 +1,54 @@
 <template>
   <div class="view-box">
     <div class="article-box">
-      <a-space direction="vertical" size="large">
-        <Card :title="card.title" :description="card.description" :imgUrl="card.img1" />
-        <Card :title="card.title" :description="card.description" :imgUrl="card.img1" />
-      </a-space>
+      <div class="article-loading-box">
+        <a-spin :spinning="loading">
+          <a-icon slot="indicator" type="loading" style="font-size: 24px" spin />
+          <a-skeleton v-if="!hasData" active />
+        </a-spin>
+        <a-space v-if="hasData" direction="vertical" size="large">
+          <Card
+            v-for="(c, index) in cardList"
+            :key="index"
+            :title="c.title"
+            :description="c.brief"
+            :img-url="c.img1"
+            :tag1="c.tag1"
+            :tag2="c.tag2"
+            :tag3="c.tag3"
+            @toArticle="toArticle(c)"
+          />
+        </a-space>
+      </div>
     </div>
     <Aside />
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'Index',
   data () {
     return {
+      hasData: false,
+      loading: true,
+      cardList: [],
       card: {
         title: '十个提升电脑效率的小技巧',
-        description: '随着 Windows 11 操作系统的发布,大家都将目光放在了这个全新的系统上。但根据官方提供的升级需求来看，仍有一部分电脑暂时还无法满足升级条件。因此，本文推荐了十个提升电脑效率的小技巧，希望可以帮助到您。',
+        brief: '随着 Windows 11 操作系统的发布,大家都将目光放在了这个全新的系统上。但根据官方提供的升级需求来看，仍有一部分电脑暂时还无法满足升级条件。因此，本文推荐了十个提升电脑效率的小技巧，希望可以帮助到您。',
         img1: 'https://images.unsplash.com/photo-1586227740560-8cf2732c1531?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1656&q=80',
         img2: 'https://images.unsplash.com/photo-1625219447949-5203cbe4829e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
       }
     }
   },
+  mounted () {
+    this.initDarkMode()
+    this.getAllArticle()
+  },
   methods: {
+    ...mapActions('article', ['findAll', 'userLogout']),
     initDarkMode () {
       const darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
       console.log(1)
@@ -40,10 +65,27 @@ export default {
           console.log('light')
         }
       })
+    },
+    async getAllArticle () {
+      this.hasData = false
+      this.loading = true
+      const params = {
+        current: 1,
+        size: 10
+      }
+      const res = await this.findAll(params)
+      if (res?.data?.code === 200) {
+        this.cardList = res.data.data.records
+        console.log(this.cardList)
+        this.hasData = true
+      } else {
+        this.hasData = false
+      }
+      this.loading = false
+    },
+    toArticle (c) {
+      this.$router.push({ path: '/article', query: { id: c.id } })
     }
-  },
-  mounted () {
-    this.initDarkMode()
   }
 }
 </script>
@@ -74,6 +116,7 @@ body{
     flex-direction: column;
     align-items: flex-start;
     min-width: @article-width;
+    position: relative;
 
     @media (max-width: @view-width) {
       align-items: center;
@@ -83,6 +126,10 @@ body{
       padding: 0 20px;
       box-sizing: border-box;
       min-width: 100%;
+    }
+
+    .article-loading-box {
+      width: 100%;
     }
   }
 

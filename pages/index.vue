@@ -15,15 +15,24 @@ import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'Index',
-  computed: {
-    ...mapState('system', ['keepState'])
+  beforeRouteLeave (to, from, next) {
+    if (!this.keepState) {
+      this.userLogout()
+    }
+    next()
   },
   data () {
     return {
     }
   },
+  computed: {
+    ...mapState('system', ['keepState'])
+  },
   created () {
     this.checkLoginState()
+  },
+  mounted () {
+    // this.initDarkMode()
   },
   methods: {
     ...mapMutations('system', ['checkLoginState', 'userLogout']),
@@ -44,15 +53,6 @@ export default {
         }
       })
     }
-  },
-  mounted () {
-    // this.initDarkMode()
-  },
-  beforeRouteLeave (to, from, next) {
-    if (!this.keepState) {
-      this.userLogout()
-    }
-    next()
   }
 }
 </script>

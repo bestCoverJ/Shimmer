@@ -1,31 +1,46 @@
 <template>
-  <div class="card-box" @click="push()">
-    <a-card hoverable >
+  <div class="card-box" @click="handleClick">
+    <a-card hoverable>
       <img
         slot="cover"
         alt="example"
         :src="imgUrl"
         style="max-height: 450px;"
-      />
-      <div class="meta-box" v-if="hasMeta">
+      >
+      <div v-if="hasMeta" class="meta-box">
         <a-card-meta :title="title">
-          <template slot="description">
-            {{description}}
+          <template slot="description" class="description-box">
+            <p>{{ description }}</p>
+            <a-space size="1">
+              <a-tag color="#108ee9">
+                {{ tag1 }}
+              </a-tag>
+              <a-tag color="#f50">
+                {{ tag2 }}
+              </a-tag>
+              <a-tag>
+                {{ tag3 }}
+              </a-tag>
+            </a-space>
           </template>
         </a-card-meta>
         <a-divider />
         <div class="bottom-box">
           <div class="avatar-box">
-            <a-avatar :src="avatar" style="margin-right: 10px;"/>
-              <div class="authors-box">
-                <p>{{authors}}</p>
-                <p id="signature">{{Signature}}</p>
-              </div>
+            <a-avatar :src="avatar" style="margin-right: 10px;" />
+            <div class="authors-box">
+              <p>{{ authors }}</p>
+              <p id="signature">
+                {{ signature }}
+              </p>
+            </div>
           </div>
           <div class="info-box">
             <a-space direction="vertical">
-              <p>{{articleDate}}</p>
-              <p class="category-text">科技新闻</p>
+              <p>{{ articleDate }}</p>
+              <p class="category-text">
+                科技新闻
+              </p>
             </a-space>
           </div>
         </div>
@@ -66,19 +81,30 @@ export default {
       type: String,
       default: 'CoverJ'
     },
-    Signature: {
+    signature: {
       type: String,
       default: '科技爱好者'
     },
     articleDate: {
       type: String,
       default: '2021年7月4日 14:52'
+    },
+    tag1: {
+      type: String,
+      default: ''
+    },
+    tag2: {
+      type: String,
+      default: ''
+    },
+    tag3: {
+      type: String,
+      default: ''
     }
   },
   methods: {
-    push () {
-      this.$message.info('点击了文章' + this.articleId)
-      this.$router.push('/article')
+    handleClick () {
+      this.$emit('toArticle', this.articleId)
     }
   }
 }
@@ -91,6 +117,8 @@ export default {
 
   @media (max-width: @mini-width) {
     width: 100%;
+  }
+  .meta-box {
   }
   .bottom-box{
     display: flex;
