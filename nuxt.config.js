@@ -43,8 +43,8 @@ export default {
     '@nuxtjs/axios',
     'cookie-universal-nuxt'
   ],
-  styleResources:{
-    less:[
+  styleResources: {
+    less: [
       './modify/css/global.less'
     ]
   },
