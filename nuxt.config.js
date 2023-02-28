@@ -55,14 +55,14 @@ export default {
     credentials: true
   },
   proxy: {
-    '/api/': {
-      // target: 'http://192.168.0.103:8080',
-      target: 'http://182.92.157.171:8090/',
-      changeOrigin: true,
-      pathRewrite: {
-        '^/api/': '/api/'
-      }
-    }
+    // '/api/': {
+    //   // target: 'http://192.168.0.103:8080',
+    //   target: 'http://182.92.157.171:8090/',
+    //   changeOrigin: true,
+    //   pathRewrite: {
+    //     '^/api/': '/api/'
+    //   }
+    // }
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

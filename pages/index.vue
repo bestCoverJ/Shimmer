@@ -93,5 +93,8 @@ body{
       // padding: 0 32px;
     }
   }
+  .article-comment-box {
+    padding: 20px;
+  }
 }
 </style>

@@ -33,7 +33,7 @@ export default {
       author: {
         name: 'CoverJ',
         date: '27 July 2021',
-        imgUrl: 'https://file.coverj.com/img/avatar.jpg'
+        imgUrl: 'https://sns-img-hw.xhscdn.com/5363a7ec-7ac8-ab64-bd73-fde5e1fed74f?imageView2/2/w/1600/format/webp'
       }
     }
   }

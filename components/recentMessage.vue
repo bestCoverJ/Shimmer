@@ -26,7 +26,7 @@
       <a slot="author">CoverJ</a>
       <a-avatar
         slot="avatar"
-        src="https://file.coverj.com/img/avatar.jpg"
+        src="https://sns-img-hw.xhscdn.com/5363a7ec-7ac8-ab64-bd73-fde5e1fed74f?imageView2/2/w/1600/format/webp"
         alt="CoverJ"
       />
       <p slot="content">

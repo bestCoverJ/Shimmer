@@ -75,7 +75,7 @@ export default {
     },
     avatar: {
       type: String,
-      default: 'https://file.coverj.com/img/avatar.jpg'
+      default: 'https://sns-img-hw.xhscdn.com/5363a7ec-7ac8-ab64-bd73-fde5e1fed74f?imageView2/2/w/1600/format/webp'
     },
     authors: {
       type: String,

@@ -49,18 +49,66 @@ import { mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'Article',
+  scrollToTop: true,
   data () {
     return {
-      hasData: false,
-      loading: true,
+      hasData: true,
+      loading: false,
       article: {
-        title: '',
-        brief: '',
+        title: '十个提升电脑效率的小技巧',
+        brief: '随着 Windows 11 操作系统的发布,大家都将目光放在了这个全新的系统上。但根据官方提供的升级需求来看，仍有一部分电脑暂时还无法满足升级条件。因此，本文推荐了十个提升电脑效率的小技巧，希望可以帮助到您。',
         imgUrl: 'https://images.unsplash.com/photo-1586227740560-8cf2732c1531?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1656&q=80',
-        tag1: '',
-        tag2: '',
-        tag3: '',
-        content: '1'
+        tag1: '趣味科技',
+        tag2: '知识分享',
+        tag3: '科技新闻',
+        // content: ''
+        content: `# h1 标题
+  ## h2 标题
+  ### h3 标题
+  #### h4 标题
+  ##### h5 标题
+  ###### h6 标题
+
+  ## 水平线
+
+  ___
+
+  ---
+
+  ***
+
+  ## 文本样式
+
+  **This is bold text**
+
+  __This is bold text__
+
+  *This is italic text*
+
+  _This is italic text_
+
+  ~~Strikethrough~~
+
+  ## 列表
+
+  无序
+
+  + Create a list by starting a line with
+  + Sub-lists are made by indenting 2 spaces:
+    - Marker character change forces new list start:
+      * Ac tristique libero volutpat at
+      + Facilisis in pretium nisl aliquet
+      - Nulla volutpat aliquam velit
+  + Very easy!
+
+  有序
+
+  1. Lorem ipsum dolor sit amet
+  2. Consectetur adipiscing elit
+  3. Integer molestie lorem at massa
+
+  1. You can use sequential numbers...
+1. ...or keep all the numbers as `
       },
       editor: {
         navigation: true
@@ -75,12 +123,13 @@ export default {
       immediate: true, // 一开始的数据也要当做一种变化
       handler (val, old) {
         console.log(val, old)
-        this.getdata()
+        // this.getdata()
       }
     }
   },
   mounted () {
-    this.getdata()
+    // this.getdata()
+    // this.mockInit()
   },
   methods: {
     ...mapMutations({
@@ -108,6 +157,9 @@ export default {
       }
       this.loading = false
     }
+    // mockInit () {
+    //   this.content = '古诗词。'
+    // }
   }
 }
 </script>
@@ -133,8 +185,10 @@ export default {
       border: 1px solid @border-color;
 
       .content-box{
+        display: flex;
+        flex-direction: column;
         padding: 20px;
-        width: 100%;
+        // width: 100%;
 
         h1{
           margin-top: 20px;

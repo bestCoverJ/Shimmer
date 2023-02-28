@@ -32,20 +32,24 @@ export default {
   name: 'Index',
   data () {
     return {
-      hasData: false,
-      loading: true,
+      hasData: true,
+      loading: false,
       cardList: [],
       card: {
         title: '十个提升电脑效率的小技巧',
         brief: '随着 Windows 11 操作系统的发布,大家都将目光放在了这个全新的系统上。但根据官方提供的升级需求来看，仍有一部分电脑暂时还无法满足升级条件。因此，本文推荐了十个提升电脑效率的小技巧，希望可以帮助到您。',
         img1: 'https://images.unsplash.com/photo-1586227740560-8cf2732c1531?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1656&q=80',
-        img2: 'https://images.unsplash.com/photo-1625219447949-5203cbe4829e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
+        img2: 'https://images.unsplash.com/photo-1625219447949-5203cbe4829e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
+        tag1: '趣味科技',
+        tag2: '知识分享',
+        tag3: '科技新闻'
       }
     }
   },
   mounted () {
     this.initDarkMode()
-    this.getAllArticle()
+    // this.getAllArticle()
+    this.mockInit()
   },
   methods: {
     ...mapActions('article', ['findAll', 'userLogout']),
@@ -85,6 +89,9 @@ export default {
     },
     toArticle (c) {
       this.$router.push({ path: '/article', query: { id: c.id } })
+    },
+    mockInit () {
+      this.cardList = new Array(3).fill(this.card)
     }
   }
 }
@@ -123,7 +130,7 @@ body{
     }
 
     @media (max-width: @mini-width) {
-      padding: 0 20px;
+      // padding: 0 20px;
       box-sizing: border-box;
       min-width: 100%;
     }
