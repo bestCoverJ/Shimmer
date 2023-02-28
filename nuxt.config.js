@@ -71,5 +71,8 @@ export default {
     //     remUnit: 50
     //   })
     // ]
+  },
+  nitro: {
+    preset: 'node-server'
   }
 }
